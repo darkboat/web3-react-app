@@ -1,0 +1,125 @@
+:root {
+    --startingbrightness: 1;
+    --endingbrightness: 1.5;
+
+    --startingcolor: white;
+    --endingcolor: black;
+
+    --hoveranimduration: 1.5s;
+
+    --startingborderradius: 50px;
+    --endingborderradius: 25px;
+
+    --inputfocusanimduration: 2s;
+}
+
+body {
+    background-color: #5ADAC8;
+    color: white;
+}
+
+button {
+    background-color: #458a81;
+    filter: brightness(var(--startingbrightness));
+
+    color: white;
+    border: none;
+    width: 15vw;
+    height: 3vw;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: #4aafa2;
+    animation-name: onhover;
+    animation-duration: var(--hoveranimduration);
+    filter: brightness(var(--endingbrightness));
+    color: var(--endingcolor);
+}
+
+button:not(:hover) {
+    animation-name: stophover;
+    animation-duration: var(--hoveranimduration);
+    filter: brightness(var(--startingbrightness));
+    color: var(--startingcolor);
+}
+
+input {
+    background-color: #458a81;
+    color: white;
+    border: none;
+    width: 20vw;
+    height: 10vh;
+    font-size: 3vw;
+    text-align: center;
+    border-radius: 30px;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+    animation-name: inputfocus;
+    animation-duration: var(--inputfocusanimduration);
+    animation-fill-mode: forwards;
+    border-radius: var(--endingborderradius);
+}
+
+input:not(:focus) {
+    animation-name: inputstopfocus;
+    animation-duration: var(--inputfocusanimduration);
+    animation-fill-mode: backwards;
+    border-radius: var(--startingborderradius);
+}
+
+::placeholder {
+    color: white;
+}
+
+@keyframes inputfocus {
+    from {
+        border-radius: var(--startingborderradius);
+    }
+
+    to {
+        border-radius: var(--endingborderradius);
+    }
+}
+
+@keyframes inputstopfocus {
+    from {
+        border-radius: var(--endingborderradius);
+    }
+
+    to {
+        border-radius: var(--startingborderradius);
+    }
+}
+
+@keyframes stophover {
+    from {
+        filter: brightness(var(--endingbrightness));
+        color: var(--endingcolor);
+    }
+
+    to {
+        filter: brightness(var(--startingbrightness));
+        color: var(--startingcolor)
+    }
+}
+
+@keyframes onhover {
+    from {
+        filter: brightness(var(--startingbrightness));
+        color: var(--startingcolor);
+    }
+
+    to {
+        filter: brightness(var(--endingbrightness));
+        color: var(--endingcolor)
+    }
+}
+
+.nostyle {
+    width: max-content;
+}
